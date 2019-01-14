@@ -4,28 +4,21 @@
 }
 
 .countryContainer{
-  width: 10%;
-  height: 10%;
+  width: 17%;
   margin: 1rem;
   background-color: #f1efef;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  opacity: 0.5;
-}
-
-.visited {
-  opacity: 1;
-}
-
-img {
-  object-fit: contain;
-  width: 80px;
-  height: 80px;
+  opacity: 0.2;
 }
 
 .countryName{
   margin: 0;
   margin-bottom: 5px;
+}
+
+.visited {
+  opacity: 1;
 }
