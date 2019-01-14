@@ -12,7 +12,9 @@ class App extends Component {
    this.state = {
      country: '',
      countries: [],
-     showCountries: true
+     showCountries: true,
+     countryToTest: '', // you need to use this state
+     continent: '', // you need to use this state
    }
 
    this.toggleShowingCountries = this.toggleShowingCountries.bind(this)
@@ -24,6 +26,16 @@ class App extends Component {
         return {...country, visited: false, cities: [], showCities: false}
       })
       this.setState({countries: updatedCountries})
+    })
+  }
+
+  setCountry = (e) => {
+    // you need to manipulate the state here :)
+  }
+
+  whichContinent = () => {
+    axios.get(`https://restcountries.eu/rest/v2/name/${'you need to fill in the correct information here'}`).then((response) => {
+      console.log(response, 'check the data in the browser console if you are stuck')
     })
   }
 
@@ -75,7 +87,17 @@ class App extends Component {
         <h3> Countries </h3>
         <p> Search for a country </p>
         <input onChange={e => this.handleChange(e)}/>
-        <button onClick={this.toggleShowingCountries}> Hide Countries </button>
+        <input
+          placeholder="type a country to find the continent"
+          onChange={undefined} // you need to update the correct place so we can find the corret country
+        />
+        <button
+          onClick={undefined} // you need to update the correct place so we call the correct function
+        >
+            Which continent ?
+        </button>
+        Continent: Europe {/* This is hardcoded at the moment, make sure you change it to show the correct continent */}
+        <div><button onClick={this.toggleShowingCountries}> Hide Countries </button></div>
           <div>
             {this.state.showCountries ?
               <Countries
