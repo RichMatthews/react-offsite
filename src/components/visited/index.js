@@ -23,7 +23,6 @@ class Visited extends React.Component {
         {this.props.countries.map(country => (
           <div className="countryWrapper">
             <div className="styledVisitedCountry">
-              <img src={country.flag} alt="countryFlag" />
               <p className="countryName"> {country.name} </p>
               <button onClick={() => this.props.toggleVisited(country.alpha2Code, 'visited')}> Remove </button>
               <input
