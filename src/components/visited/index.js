@@ -24,6 +24,7 @@ class Visited extends React.Component {
           <div className="countryWrapper">
             <div className="styledVisitedCountry">
               <p className="countryName"> {country.name} </p>
+              {/* <img src={country.flag} /> */}
               <button onClick={() => this.props.toggleVisited(country.alpha2Code, 'visited')}> Remove </button>
               <input
                 placeholder="Enter a city visited here"
