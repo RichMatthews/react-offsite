@@ -29,6 +29,10 @@ class App extends Component {
     })
   }
 
+
+
+ // ##################################################################################################
+
   setCountry = (e) => {
     // you need to manipulate the state here :)
   }
@@ -38,6 +42,10 @@ class App extends Component {
       console.log(response, 'check the data in the browser console if you are stuck')
     })
   }
+
+
+  // ##################################################################################################
+
 
   handleChange = e => {
     this.setState({country: e.target.value})
@@ -87,6 +95,7 @@ class App extends Component {
         <h3> Countries </h3>
         <p> Search for a country </p>
         <input onChange={e => this.handleChange(e)}/>
+        {/* ################################################################################################## */}
         <input
           placeholder="type a country to find the continent"
           onChange={undefined} // you need to update the correct place so we can find the corret country
@@ -97,6 +106,7 @@ class App extends Component {
             Which continent ?
         </button>
         Continent: Europe {/* This is hardcoded at the moment, make sure you change it to show the correct continent */}
+        {/* ################################################################################################## */}
         <div><button onClick={this.toggleShowingCountries}> Hide Countries </button></div>
           <div>
             {this.state.showCountries ?
