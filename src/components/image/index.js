@@ -2,4 +2,6 @@
 
 // think about if it should be stateless or a class component
 
+//export it
+
 // import it to the correct place to use it 
