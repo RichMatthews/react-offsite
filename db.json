@@ -1,0 +1,22 @@
+{
+  "countries": [
+    {
+      "name": "Afghanistan",
+      "cities": []
+    },
+    {
+      "name": "Spain",
+      "cities": [
+        "Barcelona",
+        "Madrid"
+      ]
+    },
+    {
+      "name": "Croatia",
+      "cities": [
+        "Split",
+        "Hvar"
+      ]
+    }
+  ]
+}

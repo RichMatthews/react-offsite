@@ -23,7 +23,17 @@ class App extends Component {
       const updatedCountries = data.data.map((country) => {
         return {...country, visited: false, cities: [], showCities: false}
       })
-      this.setState({countries: updatedCountries})
+      axios.get('http://localhost:3007/countries').then((countries) => {
+        const visitedCountries = countries.data
+        for (var i = 0; i < visitedCountries.length; i++){
+          for (var k = 0; k < updatedCountries.length; k++){
+            if(visitedCountries[i].name === updatedCountries[k].name){
+              updatedCountries[k].visited = true
+            }
+          }
+        }
+        this.setState({countries: updatedCountries})
+      })
     })
   }
 
