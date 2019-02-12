@@ -56,16 +56,14 @@ class Main extends Component {
                       <TableHeading>Reps</TableHeading>
                       <TableHeading>Weight</TableHeading>
                     </tr>
-                    {workout.workoutExercises.workouts.map(
-                      (exercise, index) => (
-                        <tr>
-                          <TableData>{exercise.name}</TableData>
-                          <TableData>{exercise.sets}</TableData>
-                          <TableData>{exercise.reps}</TableData>
-                          <TableData>{exercise.weight}kg</TableData>
-                        </tr>
-                      )
-                    )}
+                    {workout.workoutExercises.workouts.map(exercise => (
+                      <tr>
+                        <TableData>{exercise.name}</TableData>
+                        <TableData>{exercise.sets}</TableData>
+                        <TableData>{exercise.reps}</TableData>
+                        <TableData>{exercise.weight}kg</TableData>
+                      </tr>
+                    ))}
                   </table>
                 </PreviousWorkoutContainer>
               ) : (
