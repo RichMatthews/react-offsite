@@ -1,12 +1,11 @@
-import React from 'react'
-import { Formik, Field, Form, FieldArray } from 'formik';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import Select from 'react-select'
-import styled from 'styled-components'
-import axios from 'axios'
+import { Field, FieldArray, Form, Formik } from 'formik'
 
 import { Button } from 'components/shared/button'
+import React from 'react'
+import Select from 'react-select'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import styled from 'styled-components'
 import { submitWorkout } from 'redux/action-creators/workouts'
 
 const Container = styled.div`
@@ -46,25 +45,25 @@ const InputContainer = styled.span`
   align-items: center;
 `
 
-const OuterContainer = styled.div`
-  display: flex;
-  flex-direction: row;
+const FormRow = styled.div`
+  margin-left: -8px;
+  margin-right: -8px;
+  margin-bottom: 5px;
 `
 
 class Workout extends React.Component {
-  render(){
+  render() {
     const date = Date.now()
     return (
       <Container>
         <h4> New Workout </h4>
         <Formik
-          initialValues={{ workouts: [{ name: '', reps: '', sets: '', weight: '' }]}}
-          onSubmit={
-            (values, {resetForm}) => (
-              this.props.submitWorkout(values, date),
-              resetForm()
-            )
-          }
+          initialValues={{
+            workouts: [{ name: '', reps: '', sets: '', weight: '' }],
+          }}
+          onSubmit={(values, { resetForm }) => (
+            this.props.submitWorkout(values, date), resetForm()
+          )}
           render={({ values, setFieldValue }) => (
             <Form>
               <FieldArray
@@ -74,27 +73,50 @@ class Workout extends React.Component {
                     <StyledButton
                       text="add exercise"
                       type="button"
-                      onClick={() => arrayHelpers.push({ name: '', reps: 0, sets: 0, weight: 0 })}
+                      onClick={() =>
+                        arrayHelpers.push({
+                          name: '',
+                          reps: 0,
+                          sets: 0,
+                          weight: 0,
+                        })
+                      }
                     />
                     {values.workouts.map((workout, index) => (
-                      <div key={index}>
+                      <FormRow key={index}>
                         <InputContainer>
-                          <StyledSelect2 name={`workouts[${index}].options`}
+                          <StyledSelect2
+                            name={`workouts[${index}].options`}
                             options={this.props.exercises}
-                            onChange={(value) => setFieldValue(`workouts[${index}].name`, value.value)}
+                            onChange={value =>
+                              setFieldValue(
+                                `workouts[${index}].name`,
+                                value.value
+                              )
+                            }
                           />
-                          <StyledField placeholder="reps" name={`workouts[${index}].reps`} />
-                          <StyledField placeholder="sets" name={`workouts[${index}].sets`} />
-                          <StyledField placeholder="weight" name={`workouts[${index}].weight`} />
-                          <StyledButton type="button" text="-" onClick={() => arrayHelpers.remove(index)} />
+                          <StyledField
+                            placeholder="reps"
+                            name={`workouts[${index}].reps`}
+                          />
+                          <StyledField
+                            placeholder="sets"
+                            name={`workouts[${index}].sets`}
+                          />
+                          <StyledField
+                            placeholder="weight"
+                            name={`workouts[${index}].weight`}
+                          />
+                          <StyledButton
+                            type="button"
+                            text="-"
+                            onClick={() => arrayHelpers.remove(index)}
+                          />
                         </InputContainer>
-                      </div>
+                      </FormRow>
                     ))}
 
-                    <Button
-                      type="submit"
-                      text="Submit Workout"
-                    />
+                    <Button type="submit" text="Submit Workout" />
                   </div>
                 )}
               />
@@ -108,9 +130,13 @@ class Workout extends React.Component {
 
 const mapStateToProps = ({ workouts, languages }) => ({
   workouts,
-  languages
+  languages,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ submitWorkout }, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ submitWorkout }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Workout)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Workout)

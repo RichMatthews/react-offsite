@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import {
+  fetchPreviousWorkouts,
+  toggleShowingWorkout,
+} from 'redux/action-creators/workouts'
+
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import { bindActionCreators } from 'redux'
 import styled from 'styled-components'
-
-import { fetchPreviousWorkouts, toggleShowingWorkout } from 'redux/action-creators/workouts'
 
 const Container = styled.div`
   box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px;
@@ -32,7 +35,6 @@ const WorkoutDate = styled.span`
 `
 
 class Main extends Component {
-
   componentDidMount() {
     this.props.fetchPreviousWorkouts()
   }
@@ -45,34 +47,37 @@ class Main extends Component {
           const date = moment(workout.date).format('DD-MM-YYYY')
           return (
             <div onClick={() => this.props.toggleShowingWorkout(workout)}>
-             {workout.isShowing ?
-               <PreviousWorkoutContainer>
-                 <table>
-                   <tr>
-                     <TableHeading>Exercise name</TableHeading>
-                     <TableHeading>Sets</TableHeading>
-                     <TableHeading>Reps</TableHeading>
-                     <TableHeading>Weight</TableHeading>
-                   </tr>
-                   {workout.workoutExercises.workouts.map((exercise, index) => (
-                     <tr>
-                       <TableData>{exercise.name}</TableData>
-                       <TableData>{exercise.sets}</TableData>
-                       <TableData>{exercise.reps}</TableData>
-                       <TableData>{exercise.weight}kg</TableData>
-                     </tr>
-                   ))}
-                 </table>
+              {workout.isShowing ? (
+                <PreviousWorkoutContainer>
+                  <table>
+                    <tr>
+                      <TableHeading>Exercise name</TableHeading>
+                      <TableHeading>Sets</TableHeading>
+                      <TableHeading>Reps</TableHeading>
+                      <TableHeading>Weight</TableHeading>
+                    </tr>
+                    {workout.workoutExercises.workouts.map(
+                      (exercise, index) => (
+                        <tr>
+                          <TableData>{exercise.name}</TableData>
+                          <TableData>{exercise.sets}</TableData>
+                          <TableData>{exercise.reps}</TableData>
+                          <TableData>{exercise.weight}kg</TableData>
+                        </tr>
+                      )
+                    )}
+                  </table>
                 </PreviousWorkoutContainer>
-               : <PreviousWorkoutContainer>
+              ) : (
+                <PreviousWorkoutContainer>
                   <WorkoutDate> {date} Click to view workout </WorkoutDate>
                 </PreviousWorkoutContainer>
-             }
+              )}
             </div>
           )
         })}
       </Container>
-    );
+    )
   }
 }
 
@@ -80,6 +85,10 @@ const mapStateToProps = ({ workouts }) => ({
   workouts,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchPreviousWorkouts, toggleShowingWorkout }, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ fetchPreviousWorkouts, toggleShowingWorkout }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main)

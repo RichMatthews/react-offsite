@@ -1,20 +1,14 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
-import axios from 'axios'
 
-import Workout from 'components/workout'
-import Search from 'components/search'
 import PreviousWorkouts from 'components/previousWorkouts'
+import Search from 'components/search'
+import Workout from 'components/workout'
+import axios from 'axios'
+import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-`
-
-const TopSection = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
 `
 
 const Section = styled.div`
@@ -22,15 +16,19 @@ const Section = styled.div`
 `
 
 class Main extends Component {
-
   state = {
-    exercises: []
+    exercises: [],
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3007/exercises').then((data) => {
+    axios.get('http://localhost:3007/exercises').then(data => {
       data.data.map(exercise => {
-        this.setState({exercises: this.state.exercises.concat({value: exercise.name, label: exercise.name})})
+        this.setState({
+          exercises: this.state.exercises.concat({
+            value: exercise.name,
+            label: exercise.name,
+          }),
+        })
       })
     })
   }
@@ -38,19 +36,15 @@ class Main extends Component {
   render() {
     return (
       <Container>
-          <Section>
-            <Workout
-              exercises={this.state.exercises}
-            />
-          </Section>
-          <Search
-            exercises={this.state.exercises}
-          />
+        <Section>
+          <Workout exercises={this.state.exercises} />
+        </Section>
+        <Search exercises={this.state.exercises} />
         <Section>
           <PreviousWorkouts />
         </Section>
       </Container>
-    );
+    )
   }
 }
 

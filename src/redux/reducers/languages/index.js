@@ -1,15 +1,15 @@
 const initialState = {
-  current: 'en'
+  current: 'en',
 }
 
-export default(state = initialState, action) => {
-  switch(action.type){
+export default (state = initialState, action) => {
+  switch (action.type) {
     case 'CHANGE_TO_FRENCH':
       return {
         ...state,
-        current: 'fr'
+        current: 'fr',
       }
     default:
-      return state;
+      return state
   }
 }

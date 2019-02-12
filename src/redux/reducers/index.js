@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux';
-import workouts from './workouts';
-import languages from './languages';
-import exerciseData from './exerciseData';
+import { combineReducers } from 'redux'
+import workouts from './workouts'
+import languages from './languages'
+import exerciseData from './exerciseData'
 
 const rootReducer = combineReducers({
   workouts,
   languages,
-  exerciseData
-});
+  exerciseData,
+})
 
-export default rootReducer;
+export default rootReducer

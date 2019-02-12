@@ -1,6 +1,10 @@
-import axios from 'axios'
+import {
+  SAVE_WORKOUT,
+  SUBMIT_WORKOUT,
+  TOGGLE_SHOWING_WORKOUT,
+} from 'redux/types'
 
-import { SET_CURRENT_EXERCISE, SUBMIT_WORKOUT, SAVE_WORKOUT, TOGGLE_SHOWING_WORKOUT } from 'redux/types'
+import axios from 'axios'
 
 export const submitWorkout = (workout, date) => {
   return (dispatch, getState) => {
@@ -11,44 +15,44 @@ export const submitWorkout = (workout, date) => {
 }
 
 export const updateExerciseOnServer = workout => {
-  return (dispatch) => {
+  return () => {
     axios({
       method: 'post',
       url: 'http://localhost:3007/exercises',
       data: {
         date: Date.now(),
-        workoutExercises: workout
+        workoutExercises: workout,
       },
     })
   }
 }
 
 export const saveStateToServer = workout => {
-  return (dispatch) => {
+  return () => {
     axios({
       method: 'post',
       url: 'http://localhost:3007/workouts',
       data: {
         date: Date.now(),
-        workoutExercises: workout
+        workoutExercises: workout,
       },
     })
   }
 }
 
 export const fetchPreviousWorkouts = () => {
-  return (dispatch) => {
+  return dispatch => {
     axios({
       method: 'get',
-      url: 'http://localhost:3007/workouts'
-    }).then((data) => {
+      url: 'http://localhost:3007/workouts',
+    }).then(data => {
       dispatch(loadPreviousWorkoutsToStore(data.data))
     })
   }
 }
 
 const loadPreviousWorkoutsToStore = workouts => {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({ type: SAVE_WORKOUT, workouts })
   }
 }
