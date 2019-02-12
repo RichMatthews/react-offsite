@@ -1,0 +1,23 @@
+languages: [{
+  lang: 'en',
+  phrases: [{
+    title: 'Add Exercise',
+    phrase: 'Add Exercise'
+  },
+  {
+    title: 'Previous Workouts',
+    phrase: 'Previous Workouts'
+  }]
+},
+{
+  lang: 'fr',
+  phrases: [{
+    title: 'Add Exercise',
+    phrase: `ajouter de l'exercice`
+  },
+  {
+    title: 'Previous Workouts',
+    phrase: `séances d'entraînement précédentes`
+  }]
+},
+//{this.state.languages.filter(lang => lang.lang === this.props.languages.current)[0].phrases.filter(phr => phr.title === 'Add Exercise')[0].phrase}

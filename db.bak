@@ -7,34 +7,6 @@
         "workoutExercises": {
           "workouts": [
             {
-              "name": "bicep curls",
-              "reps": 5,
-              "sets": 5,
-              "weight": 22
-            }
-          ]
-        }
-      },
-      {
-        "id": "js01i6ku",
-        "date": 1549871551181,
-        "workoutExercises": {
-          "workouts": [
-            {
-              "name": "bicep curls",
-              "reps": "99",
-              "sets": "99",
-              "weight": "99"
-            }
-          ]
-        }
-      },
-      {
-        "id": "js0m4c7t",
-        "date": 1549906177240,
-        "workoutExercises": {
-          "workouts": [
-            {
               "name": "",
               "reps": "",
               "sets": "",
